@@ -12,7 +12,7 @@ Don't change anymore context to open a merge request 👨🏻‍💻
 <p align="center">
 
 [![npm version](https://badge.fury.io/js/gitlab-merge.svg)](https://badge.fury.io/js/gitlab-merge)
-[![Code Climate](https://codeclimate.com/github/CVarisco/gitlab-merge/badges/gpa.svg)](https://codeclimate.com/github/CVarisco/gitlab-merge)
+[![Maintainability](https://api.codeclimate.com/v1/badges/7698738e69089d536da0/maintainability)](https://codeclimate.com/github/CVarisco/gitlab-merge/maintainability)
 [![npm](https://img.shields.io/npm/dw/gitlab-merge.svg)](https://www.npmjs.com/package/gitlab-merge)
 [![Build Status](https://travis-ci.org/CVarisco/gitlab-merge.svg?branch=master)](https://travis-ci.org/CVarisco/gitlab-merge)
 
