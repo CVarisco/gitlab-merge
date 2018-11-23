@@ -1,0 +1,50 @@
+{
+  "name": "gitlab-merge",
+  "version": "0.0.1",
+  "description": "Tool to make merge request on gitlab from terminal",
+  "bin": {
+    "glab": "./dist/index.js"
+  },
+  "repository": "https://github.com/CVarisco/gitlab-merge.git",
+  "author": "Christian Varisco <vari.chri1993@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=6"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "lint": "eslint src test",
+    "build": "./scripts/build.sh",
+    "watch": "npm-watch",
+    "try": "node ./dist/index.js",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "watch": {
+    "lint": "src/**/*.js",
+    "build": "src/**/*.js"
+  },
+  "dependencies": {
+    "babel-polyfill": "6.26.0",
+    "chalk": "2.1.0",
+    "cosmiconfig": "3.1.0",
+    "git-branch": "^2.0.1",
+    "inquirer": "6.2.0",
+    "request-promise": "4.2.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-eslint": "7.1.1",
+    "babel-preset-env": "1.1.8",
+    "babel-preset-stage-2": "6.18.0",
+    "eslint": "3.14.0",
+    "eslint-config-airbnb-base": "11.0.1",
+    "eslint-plugin-import": "2.2.0",
+    "jest": "20.0.4",
+    "mock-fs": "3.12.1",
+    "npm-watch": "0.1.7"
+  }
+}
