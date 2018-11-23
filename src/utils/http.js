@@ -1,24 +1,23 @@
-import request from "request-promise";
-import config from "../config";
+import request from 'request-promise';
+import config from '../config';
 
 const reqOptions = {
   uri: config.api_link,
   headers: {
-    "Private-Token": config.private_token
+    'Private-Token': config.private_token,
   },
-  json: true
+  json: true,
 };
 
-const http = method => async ({ url, body }) => {
-  return await request({
+const http = method => ({ url, body }) =>
+  request({
     ...reqOptions,
     uri: reqOptions.uri + url,
     method,
-    body
+    body,
   });
-};
 
-const get = http("GET");
-const post = http("POST");
+const get = http('GET');
+const post = http('POST');
 
 export { get, post };

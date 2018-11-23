@@ -1,31 +1,31 @@
-import { getProjects } from "./api";
-import branch from "git-branch";
-import Logger from "./utils/logger";
+import branch from 'git-branch';
+import { getProjects } from './api';
+import Logger from './utils/logger';
 
 const questions = [
   {
-    type: "input",
-    name: "title",
-    default: "WIP: MR",
-    message: "Title of merge request:"
+    type: 'input',
+    name: 'title',
+    default: 'WIP: MR',
+    message: 'Title of merge request:',
   },
   {
-    type: "input",
-    name: "source_branch",
+    type: 'input',
+    name: 'source_branch',
     default: branch.sync(),
-    message: "Source branch:"
+    message: 'Source branch:',
   },
   {
-    type: "input",
-    name: "target_branch",
-    default: "master",
-    message: "Target Branch:"
+    type: 'input',
+    name: 'target_branch',
+    default: 'master',
+    message: 'Target Branch:',
   },
   {
-    type: "input",
-    name: "description",
-    message: "Description:"
-  }
+    type: 'input',
+    name: 'description',
+    message: 'Description:',
+  },
 ];
 
 /**
@@ -38,18 +38,18 @@ async function getProjectIdQuestion() {
     const projects = await getProjects();
 
     if (!projects || (projects && !projects.length)) {
-      Logger.error("[QUESTION] No projects found");
+      Logger.error('[QUESTION] No projects found');
       return process.exit(1);
     }
 
     return {
-      type: "list",
-      name: "project_id",
-      message: "Select project:",
-      choices: projects.map(({ id, name }) => ({ name, value: id }))
+      type: 'list',
+      name: 'project_id',
+      message: 'Select project:',
+      choices: projects.map(({ id, name }) => ({ name, value: id })),
     };
   } catch (error) {
-    Logger.error("[QUESTION] getProjectIdQuestion", error);
+    Logger.error('[QUESTION] getProjectIdQuestion', error);
     return process.exit(1);
   }
 }
@@ -60,9 +60,7 @@ async function getProjectIdQuestion() {
  * @returns {Array} Questions
  */
 async function getQuestions(config) {
-  const filteredQuestions = questions.filter(
-    question => !config[question.name]
-  );
+  const filteredQuestions = questions.filter(question => !config[question.name]);
 
   if (!config.project_id) {
     const projectIdQuestion = await getProjectIdQuestion();
