@@ -4,6 +4,7 @@
 
 <p align="center">
 <strong align="center">First Gitlab guided CLI to create your merge request from terminal</strong>
+Don't change anymore context to open a merge request 👨🏻‍💻
 </p>
 
 <br>
