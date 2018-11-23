@@ -2,8 +2,9 @@
   <img src="https://github.com/CVarisco/gitlab-merge/blob/master/docs/logo.png" width="500" alt="gitlab-merge"/>
 </p>
 
-<strong align="center">First Gitlab CLI to create your merge request from terminal</strong><br />
-
+<p align="center">
+<strong align="center">First Gitlab CLI to create your merge request from terminal</strong>
+</p><br>
 <p align="center">
 
 [![npm version](https://badge.fury.io/js/gitlab-merge.svg)](https://badge.fury.io/js/gitlab-merge)
