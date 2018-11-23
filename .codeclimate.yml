@@ -1,0 +1,13 @@
+engines:
+  eslint:
+    enabled: true
+  duplication:
+    enabled: true
+ratings:
+  paths:
+    - src/**
+exclude_paths:
+  - "dist/"
+  - "docs/"
+  - "node_modules/"
+  - "scripts/"
