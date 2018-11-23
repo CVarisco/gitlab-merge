@@ -6,6 +6,7 @@ const questions = [
   {
     type: "input",
     name: "title",
+    default: "WIP: MR",
     message: "Title of merge request:"
   },
   {
@@ -17,6 +18,7 @@ const questions = [
   {
     type: "input",
     name: "target_branch",
+    default: "master",
     message: "Target Branch:"
   },
   {
@@ -28,11 +30,18 @@ const questions = [
 
 /**
  * Fetch projects from gitlab and return the list of projects as a choice of the question
- * @returns {Object} Question list
+ * If not projects found, close the process.
+ * @returns {Object} Question
  */
 async function getProjectIdQuestion() {
   try {
     const projects = await getProjects();
+
+    if (!projects || (projects && !projects.length)) {
+      Logger.error("[QUESTION] No projects found");
+      return process.exit(1);
+    }
+
     return {
       type: "list",
       name: "project_id",
@@ -40,13 +49,14 @@ async function getProjectIdQuestion() {
       choices: projects.map(({ id, name }) => ({ name, value: id }))
     };
   } catch (error) {
-    Logger.error(error);
+    Logger.error("[QUESTION] getProjectIdQuestion", error);
+    return process.exit(1);
   }
 }
 
 /**
  * Filter an populate array of questions based on config file
- * @param {*} config
+ * @param {Object} config
  * @returns {Array} Questions
  */
 async function getQuestions(config) {

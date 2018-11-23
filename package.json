@@ -1,9 +1,9 @@
 {
   "name": "gitlab-merge",
   "version": "0.0.1",
-  "description": "Tool to make merge request on gitlab from terminal",
+  "description": "Tool to create merge request on gitlab from terminal",
   "bin": {
-    "glab": "./dist/index.js"
+    "gitlab-merge": "./dist/index.js"
   },
   "repository": "https://github.com/CVarisco/gitlab-merge.git",
   "author": "Christian Varisco <vari.chri1993@gmail.com>",
@@ -28,15 +28,17 @@
     "build": "src/**/*.js"
   },
   "dependencies": {
+    "ascii-art": "1.5.0",
     "babel-polyfill": "6.26.0",
     "chalk": "2.1.0",
     "cosmiconfig": "3.1.0",
-    "git-branch": "^2.0.1",
+    "git-branch": "2.0.1",
     "inquirer": "6.2.0",
-    "request-promise": "4.2.2"
+    "request-promise": "4.2.2",
+    "ora": "1.4.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.18.0",
+    "babel-cli": "6.18.0",
     "babel-eslint": "7.1.1",
     "babel-preset-env": "1.1.8",
     "babel-preset-stage-2": "6.18.0",

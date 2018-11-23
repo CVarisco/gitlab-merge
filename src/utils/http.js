@@ -1,26 +1,21 @@
 import request from "request-promise";
 import config from "../config";
-import Logger from "./logger";
 
 const reqOptions = {
   uri: config.api_link,
   headers: {
     "Private-Token": config.private_token
   },
-  json: true // Automatically parses the JSON string in the response
+  json: true
 };
 
 const http = method => async ({ url, body }) => {
-  try {
-    return await request({
-      ...reqOptions,
-      uri: reqOptions.uri + url,
-      method,
-      body
-    });
-  } catch (error) {
-    Logger.error(error);
-  }
+  return await request({
+    ...reqOptions,
+    uri: reqOptions.uri + url,
+    method,
+    body
+  });
 };
 
 const get = http("GET");

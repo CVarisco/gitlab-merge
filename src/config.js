@@ -1,4 +1,5 @@
 import { homedir } from "os";
+import Logger from "./utils/logger";
 
 const cosmiconfig = require("cosmiconfig");
 const explorer = cosmiconfig("gitlab-merge", {
@@ -10,7 +11,8 @@ const MANDATORY_FIELDS = ["api_link", "private_token"];
 
 /**
  * Check if the mandatory fields are included into the configuration file
- * @param {*} config
+ * @param {Object} config
+ * @returns {Boolean}
  */
 const isConfigValid = config => {
   const configKeys = Object.keys(config);
@@ -27,18 +29,27 @@ const isConfigValid = config => {
 
 /**
  * Config object saved once loaded
+ * If no config is found or are missing mandatory fields, close the process.
  */
 const config = (() => {
   const getConfig = () => {
-    const { config } = explorer.load(process.cwd());
+    const configFile = explorer.load(process.cwd());
 
-    if (!config) {
-      return new Error("Configuration not found");
+    if (!configFile) {
+      Logger.error("[CONF] Configuration not found");
+      return process.exit(1);
     }
-    if (!config || !isConfigValid(config)) {
-      return new Error("Mandatory fields in configuration are missing");
+
+    if (!configFile.config || !isConfigValid(configFile.config)) {
+      Logger.error(
+        `[CONF] Mandatory fields in configuration are missing (${MANDATORY_FIELDS.join(
+          ", "
+        )})`
+      );
+      return process.exit(1);
     }
-    return config;
+
+    return configFile.config;
   };
 
   return getConfig();

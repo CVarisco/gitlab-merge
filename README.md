@@ -3,8 +3,11 @@
 </p>
 
 <p align="center">
-<strong align="center">First Gitlab CLI to create your merge request from terminal</strong>
-</p><br>
+<strong align="center">First Gitlab guided CLI to create your merge request from terminal</strong>
+</p>
+
+<br>
+
 <p align="center">
 
 [![npm version](https://badge.fury.io/js/gitlab-merge.svg)](https://badge.fury.io/js/gitlab-merge)
@@ -30,9 +33,9 @@ Create your configuration file.
 `gitlab-merge` uses [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) for configuration file support.
 This means you can configure cca via:
 
-- A `.ccarc` file, written in YAML or JSON, with optional extensions: `.yaml/.yml/.json`.
-- A `cca.config.js` file that exports an object.
-- A `"cca"` key in your `package.json` file.
+- A `.gitlab-mergerc` file, written in YAML or JSON, with optional extensions: `.yaml/.yml/.json`.
+- A `gitlab-merge.config.js` file that exports an object.
+- A `"gitlab-merge"` key in your `package.json` file.
 
 The configuration file will be resolved starting from the root of your project,
 and searching up the file tree until a config file is (or isn't) found.
@@ -55,17 +58,31 @@ $ gitlab-merge
 
 Currently supported options are:
 
-| Option          | Description                                                                                                               |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `api_link`      | Default type of the component                                                                                             |
-| `private_token` | Default path to get the templates from the custom templates folder                                                        |
-| `project_id`    | Default path to create component file and folder                                                                          |
-| `source_branch` | Default extension for your javascript file `["js", "jsx"]`                                                                |
-| `target_branch` | Default extension for your css file `["css", "scss", "sass", "less", false]`. Set to false if you don't want a style file |
-| `title`         | Default flag to include a test file in the folder `[true, false]`                                                         |
-| `description`   | Default flag to include a storybook file in the folder `[true, false]`                                                    |
+| Option          | Description                                                                                                                                                                                                                                                      |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `api_link`      | **Mandatory** Api link of the gitlab host                                                                                                                                                                                                                        |
+| `private_token` | **Mandatory** Your private token generated from gitlab. Where can I generate the private token?                                                                                                                                                                  |
+| `project_id`    | Optional Project id for the destionation of the merge request. If you don't set the project_id in the configuration file the tool at the beginning fetch ALL the list of the project hosted to the api_link provided. Where can I find the project id in Gitlab? |
+| `source_branch` | Optional From which branch the merge request come from (default the local active branch)                                                                                                                                                                         |
+| `target_branch` | Optional Target branch to merge changes                                                                                                                                                                                                                          |
+| `title`         | Optional Title of the merge request                                                                                                                                                                                                                              |
+| `description`   | Optional Description of the merge request                                                                                                                                                                                                                        |
+
+### Where can I generate the private token?
+
+Very simple! go to your user settings in Gitlab at ´https://XXXXXXX/profile´
+
+<p align="center">
+  <img src="https://github.com/CVarisco/gitlab-merge/blob/master/docs/api_token.png" alt="gitlab-merge" width="1024" />
+</p>
 
 ### Where can I find the project id in Gitlab?
+
+You can find the project id of your project in the details tab of the repo.
+
+<p align="center">
+  <img src="https://github.com/CVarisco/gitlab-merge/blob/master/docs/project_id.png" alt="gitlab-merge" width="1024" />
+</p>
 
 ## Contributing
 
