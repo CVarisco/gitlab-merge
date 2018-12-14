@@ -20,6 +20,26 @@ async function getProjects() {
 }
 
 /**
+ * Fetch the list of users per projectId
+ * https://docs.gitlab.com/ee/api/merge_requests.html#create-mr
+ * @param {Integer} projectId
+ * @returns {Array} Array of users
+ */
+async function getUsersOnProject(projectId) {
+  const spinner = ora('Fetching users').start();
+  try {
+    const res = await get({
+      url: `/projects/${projectId}/users`,
+    });
+    spinner.stop();
+    return res;
+  } catch (error) {
+    spinner.stop();
+    return Logger.error('[API]: getUsersOnProject()', error.message);
+  }
+}
+
+/**
  * Create merge request api
  * https://docs.gitlab.com/ee/api/merge_requests.html#create-mr
  * @param {Object} body
@@ -42,4 +62,4 @@ async function createMergeRequest(body) {
   }
 }
 
-export { getProjects, createMergeRequest };
+export { getProjects, createMergeRequest, getUsersOnProject };

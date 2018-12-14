@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import 'babel-polyfill';
-import config from './config';
-import { askMandatoryQuestions, askAssignee } from './questions';
 import art from 'ascii-art';
+import config from './config';
+import { askMandatoryQuestions, askAssignee, askProjectId } from './questions';
 import { createMergeRequest } from './api';
 import Logger from './utils/logger';
 
@@ -12,10 +12,14 @@ async function start() {
   // title, branches, description
   const mandatoryResponses = await askMandatoryQuestions(config);
   // ProjectId
-  const responses = await askProjectId({ ...config, ...mandatoryResponses });
-  // Assignee
-  const responses = await askAssignee({ ...config, ...mandatoryResponses });
-  const mergeRequestUrl = await createMergeRequest(responses);
+  const { project_id: projectId } = await askProjectId({ ...config, ...mandatoryResponses });
+  // Assignee optional
+  const assigneeId = await askAssignee({ ...config, ...mandatoryResponses });
+  const mergeRequestUrl = await createMergeRequest({
+    ...mandatoryResponses,
+    project_id: projectId,
+    ...assigneeId,
+  });
   console.log('\n');
   Logger.log(`Your merge request is created at: ${mergeRequestUrl}`);
 }
