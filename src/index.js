@@ -1,18 +1,25 @@
 #!/usr/bin/env node
 import 'babel-polyfill';
-import inquirer from 'inquirer';
-import config from './config';
-import getQuestions from './questions';
 import art from 'ascii-art';
+import config from './config';
+import { askMandatoryQuestions, askAssignee, askProjectId } from './questions';
 import { createMergeRequest } from './api';
 import Logger from './utils/logger';
 
 async function start() {
   const introMessage = await art.font('gitlab merge', 'Doom').toPromise();
   console.log(introMessage);
-  const questions = await getQuestions(config);
-  const responses = await inquirer.prompt(questions);
-  const mergeRequestUrl = await createMergeRequest({ ...config, ...responses });
+  // title, branches, description
+  const mandatoryResponses = await askMandatoryQuestions(config);
+  // ProjectId
+  const { project_id: projectId } = await askProjectId({ ...config, ...mandatoryResponses });
+  // Assignee optional
+  const assigneeId = await askAssignee({ ...config, ...mandatoryResponses });
+  const mergeRequestUrl = await createMergeRequest({
+    ...mandatoryResponses,
+    project_id: projectId,
+    ...assigneeId,
+  });
   console.log('\n');
   Logger.log(`Your merge request is created at: ${mergeRequestUrl}`);
 }

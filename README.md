@@ -68,6 +68,7 @@ Currently supported options are:
 | `target_branch` | Optional Target branch to merge changes                                                                                                                                                                                                                                                                        |
 | `title`         | Optional Title of the merge request                                                                                                                                                                                                                                                                            |
 | `description`   | Optional Description of the merge request                                                                                                                                                                                                                                                                      |
+| `assignee_id`   | Optional Assignee id of the merge request. If you put `none` the MR will be unassigned                                                                                                                                                                                                                                                                     |
 
 ### Where can I generate the private token?
 
