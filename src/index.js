@@ -16,6 +16,7 @@ async function start() {
   // Assignee optional
   const assigneeId = await askAssignee({ ...config, ...mandatoryResponses });
   const mergeRequestUrl = await createMergeRequest({
+    ...config,
     ...mandatoryResponses,
     project_id: projectId,
     ...assigneeId,
