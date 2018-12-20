@@ -68,7 +68,9 @@ Currently supported options are:
 | `target_branch` | Optional Target branch to merge changes                                                                                                                                                                                                                                                                        |
 | `title`         | Optional Title of the merge request                                                                                                                                                                                                                                                                            |
 | `description`   | Optional Description of the merge request                                                                                                                                                                                                                                                                      |
-| `assignee_id`   | Optional Assignee id of the merge request. If you put `none` the MR will be unassigned                                                                                                                                                                                                                                                                     |
+| `assignee_id`   | Optional Assignee id of the merge request. If you put `none` the MR will be unassigned                                                                                                                                                                                                                         |
+
+**You can add to your config file the options that you want**, [here](https://docs.gitlab.com/ee/api/merge_requests.html#create-mr) is the list.
 
 ### Where can I generate the private token?
 

@@ -6,15 +6,19 @@ import { askMandatoryQuestions, askAssignee, askProjectId } from './questions';
 import { createMergeRequest } from './api';
 import Logger from './utils/logger';
 
+const packageJson = require('../package.json');
+
 async function start() {
   const introMessage = await art.font('gitlab merge', 'Doom').toPromise();
   console.log(introMessage);
+  console.log(`Version: v${packageJson.version}`);
+
   // title, branches, description
   const mandatoryResponses = await askMandatoryQuestions(config);
   // ProjectId
   const { project_id: projectId } = await askProjectId({ ...config, ...mandatoryResponses });
   // Assignee optional
-  const assigneeId = await askAssignee({ ...config, ...mandatoryResponses });
+  const assigneeId = await askAssignee({ ...config, ...mandatoryResponses, project_id: projectId });
   const mergeRequestUrl = await createMergeRequest({
     ...config,
     ...mandatoryResponses,

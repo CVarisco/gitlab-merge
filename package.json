@@ -1,6 +1,6 @@
 {
   "name": "gitlab-merge",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Tool to create merge request on gitlab from terminal",
   "bin": {
     "gitlab-merge": "./dist/index.js"
@@ -34,7 +34,6 @@
     "cosmiconfig": "3.1.0",
     "git-branch": "2.0.1",
     "inquirer": "6.2.0",
-    "inquirer-autocomplete-prompt": "^1.0.1",
     "ora": "1.4.0",
     "request-promise": "4.2.2"
   },
